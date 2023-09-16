@@ -6,6 +6,7 @@ import Card from "../UI/ProductCard";
 import Container from "../UI/Container";
 import CartContext from "../../store/CartContext";
 import ProductCard from "../UI/ProductCard";
+import MuiCard from "../UI/MuiCard";
 
 export const DUMMY_PRODUCTS = [
   {
@@ -99,12 +100,17 @@ const Products = (props) => {
       ctx.addToCart(item)
   }
 
+  const remove1Cart=(id)=>{
+      ctx.removeFromCart(id)
+  }
+
   return (
     <Container from='product'>
       {allProducts &&
         allProducts.map((product) => {
           return (
-            <ProductCard onAddToCart={addToCart} product={product} key={product.id} from="product"  />
+            <ProductCard onAddToCart={addToCart} product={product} key={product.id} from="product" onRemoveFromCart={remove1Cart} />
+            // <MuiCard onAddToCart={addToCart} product={product} key={product.id} from="product"  />
           );
         })}
     </Container>

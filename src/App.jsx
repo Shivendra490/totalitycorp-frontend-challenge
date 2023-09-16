@@ -6,6 +6,7 @@ import NavBar from "./components/nav/NavBar";
 import Cart from "./components/cart/Cart";
 import Favourite from "./components/favourite/Favourite";
 import Products from "./components/products/Products";
+import Bar from "./components/nav/Bar";
 
 export const DUMMY_PRODUCTS = [
   {
@@ -87,6 +88,7 @@ function App() {
     <>
       <BrowserRouter>
         <NavBar />
+        {/* <Bar/> */}
         <FilterBar />
         <Routes>
           <Route

@@ -1,4 +1,5 @@
 import styles from "./FilterBar.module.css";
+import StarBorderIcon from '@mui/icons-material/StarBorder';
 
 const FilterBar = () => {
   return (
@@ -22,9 +23,9 @@ const FilterBar = () => {
         <span>
           <select name="categories">
             <option value="all">all</option>
-            <option value="2stars">2 stars and above</option>
-            <option value="2stars">3 stars and above</option>
-            <option value="2stars">4 stars and above</option>
+            <option value="2stars">2 <StarBorderIcon/> & above</option>
+            <option value="2stars">3 <StarBorderIcon/> & above</option>
+            <option value="2stars">4 <StarBorderIcon/> & above</option>
           </select>
         </span>
       </div>
@@ -50,7 +51,7 @@ const FilterBar = () => {
       </div>
 
       <div className={styles.reset}>
-        <button style={{width:'100%',height:'100%',padding:'1rem' , backgroundColor:'lightblue'}}>Reset filter</button>
+        <button style={{width:'100%',height:'100%',padding:'1rem' , backgroundColor:'lightblue',borderRadius:'1rem'}}>Reset filter</button>
       </div>
 
 

@@ -6,6 +6,9 @@
     justify-content: space-between;
     align-items: center;
     padding:2rem 5rem;
+    position: sticky;
+    z-index: 1;
+    flex-wrap: wrap;
 }
 
 .navbar .navlinks{
@@ -13,4 +16,5 @@
     justify-content: space-between;
     align-items: center;
     gap: 5rem;
+    flex-wrap: wrap;
 }

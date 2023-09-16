@@ -6,7 +6,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 const NavBar = () => {
   return (
     <div className={styles.navbar}>
-      <div>Logo</div>
+      <div className={styles.logo}><img src="../../public/vite.svg"/></div>
       <div className={styles.navlinks}>
         <div>Home</div>
         <div>About</div>

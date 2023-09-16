@@ -2,12 +2,15 @@ import styles from './AllProductsPage.module.css'
 import Product from './single-product/Product'
 
 
-const AllProductsPage = () => {
+
+const AllProductsPage = (props) => {
   return (
     <div className={styles.allproductswrapper}>
-      <Product/>
+      <Product productsList={props.productsList}/>
     </div>
   )
 }
+
+
 
 export default AllProductsPage

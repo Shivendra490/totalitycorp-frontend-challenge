@@ -1,0 +1,70 @@
+.container{
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(30rem,1fr));
+    gap:5rem;
+    margin:5rem;
+   
+    
+}
+
+.card{
+    /* height:40rem; */
+    padding-bottom: 1rem;
+}
+
+.productImage{
+    width:30rem;
+    height:30rem;
+    margin:1rem auto;
+    /* object-fit: contain; */
+}
+
+img{
+    width:100%;
+    height:100%;
+    object-fit: contain;
+}
+
+/* .productName{
+    font-size: large;
+    margin-left:1rem;
+} */
+
+/* .productPrice{
+    display:flex;
+    justify-content: space-between;
+    font-size: large;
+    margin-left:1rem;  
+} */
+
+.formWrapper{
+    display:flex;
+    width:95%;
+    height:3rem;
+    margin:auto;
+    font-size: 1.8rem;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+input[type='number']{
+    height:100%;
+}
+
+.addBtn{
+    width:90%;
+    height:3.2rem;
+    /* height:100%; yahan check karna h*/ 
+    margin:auto;
+    background-color: black;
+}
+
+button{
+    height:100%;
+    width:100%;
+    background-color: blue;
+}
+
+
+

@@ -17,7 +17,12 @@
   border-radius: 5rem;
   box-shadow: 1rem 1rem 1rem grey;
   gap:2rem;
-  flex-wrap: wrap;
+  flex-wrap: wrap; 
+
+  /* display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(18rem,1fr));
+    gap:5rem; */
+    
 }
 
 .navbar .navlinks {
@@ -37,7 +42,7 @@ select {
 .search{
     /* flex-grow: 1.1; */
     /* height:3rem; */
-    width:25rem;
+    /* width:25rem; */
     border-radius: 2rem;
 }
 

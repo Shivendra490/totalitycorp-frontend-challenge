@@ -1,11 +1,11 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./App.css";
-// import AllProductsPage from "./components/AllProductsPage";
-import FilterBar from "./components/nav/FilterBar";
-import NavBar from "./components/nav/NavBar";
-import Cart from "./components/cart/Cart";
-import Favourite from "./components/favourite/Favourite";
-import Products from "./components/products/Products";
+
+
+
+import { useContext, useEffect, useState } from "react";
+import Card from "../UI/ProductCard";
+import Container from "../UI/Container";
+import CartContext from "../../store/CartContext";
+import ProductCard from "../UI/ProductCard";
 
 export const DUMMY_PRODUCTS = [
   {
@@ -82,23 +82,35 @@ export const DUMMY_PRODUCTS = [
   },
 ];
 
-function App() {
-  return (
-    <>
-      <BrowserRouter>
-        <NavBar />
-        <FilterBar />
-        <Routes>
-          <Route
-            path="/"
-            element={<Products/>}
-          />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/favourite" element={<Favourite />} />
-        </Routes>
-      </BrowserRouter>
-    </>
-  );
-}
 
-export default App;
+
+const Products = (props) => {
+
+
+  const [allProducts,setAllProducts]=useState([])
+  const ctx=useContext(CartContext)
+
+  useEffect(()=>{
+    setAllProducts(DUMMY_PRODUCTS)
+
+  },[])
+
+  const addToCart=(item)=>{
+      ctx.addToCart(item)
+  }
+
+  return (
+    <Container from='product'>
+      {allProducts &&
+        allProducts.map((product) => {
+          return (
+            <ProductCard onAddToCart={addToCart} product={product} key={product.id} from="product"  />
+          );
+        })}
+    </Container>
+  );
+};
+
+
+
+export default Products;

@@ -23,9 +23,9 @@ const FilterBar = () => {
         <span>
           <select name="categories">
             <option value="all">all</option>
-            <option value="2stars">2 <StarBorderIcon/> & above</option>
-            <option value="2stars">3 <StarBorderIcon/> & above</option>
-            <option value="2stars">4 <StarBorderIcon/> & above</option>
+            <option value="2stars">2 * & above</option>
+            <option value="2stars">3 * & above</option>
+            <option value="2stars">4 * & above</option>
           </select>
         </span>
       </div>

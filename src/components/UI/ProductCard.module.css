@@ -3,8 +3,6 @@
     grid-template-columns: repeat(auto-fill,minmax(30rem,1fr));
     gap:5rem;
     margin:5rem;
-   
-    
 }
 
 .card{
@@ -52,13 +50,15 @@ input[type='number']{
     height:100%;
 }
 
-.addBtn{
+
+ /* height:100%; yahan check karna h*/ 
+/* .addBtn{
     width:90%;
     height:3.2rem;
-    /* height:100%; yahan check karna h*/ 
+   
     margin:auto;
     background-color: black;
-}
+} */
 
 button{
     height:100%;
@@ -66,5 +66,7 @@ button{
     background-color: blue;
 }
 
-
-
+.btn{
+    width:10rem;
+    height:4rem;
+}

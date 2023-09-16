@@ -6,11 +6,13 @@
 html{
   position: relative;
   font-size: 62.5%;
+  background-color:#3f3f3f;
 }
 
 @media(max-width:768px){
   html{
-    font-size: 55%;
+    /* background-color: aqua; */
+    font-size: 40%;
   }
 }
 

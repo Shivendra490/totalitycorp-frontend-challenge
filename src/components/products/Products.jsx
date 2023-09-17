@@ -113,8 +113,8 @@ const Products = (props) => {
       {productsList &&
         productsList?.map((product) => {
           return (
-            <ProductCard onAddToCart={addToCart} product={product} key={product.id} from="product" onRemoveFromCart={remove1Cart} />
-            // <MuiCard onAddToCart={addToCart} product={product} key={product.id} from="product"  />
+            // <ProductCard onAddToCart={addToCart} product={product} key={product.id} from="product" onRemoveFromCart={remove1Cart} />
+            <MuiCard onAddToCart={addToCart} product={product} key={product.id} from="product"  onRemoveFromCart={remove1Cart}/>
           );
         })}
     </Container>

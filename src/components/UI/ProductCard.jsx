@@ -16,6 +16,7 @@ const ProductCard = (props) => {
   const from = props.from;
   
 
+ 
   const submitHandler = (e) => {
     e.preventDefault();
     const enteredQuantity = quantityRef.current.value;

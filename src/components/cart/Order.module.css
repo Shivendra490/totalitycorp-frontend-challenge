@@ -1,0 +1,4 @@
+.orderWrapper{
+    display:grid;
+    place-content: center;
+}

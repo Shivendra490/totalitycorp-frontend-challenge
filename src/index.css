@@ -5,14 +5,14 @@
 
 html{
   position: relative;
-  font-size: 62.5%;
+  /* font-size: 62.5%; */
   background-color:#3f3f3f;
 }
 
-@media(max-width:768px){
+/* @media(max-width:768px){
   html{
-    /* background-color: aqua; */
+   
     font-size: 40%;
   }
-}
+} */
 

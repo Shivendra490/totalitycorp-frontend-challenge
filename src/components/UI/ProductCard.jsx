@@ -9,7 +9,7 @@ import RemoveIcon from "@mui/icons-material/Remove";
 
 
 const ProductCard = (props) => {
-  console.log("productcard", props);
+  
   
   const quantityRef = useRef();
   const product = props.product;

@@ -1,3 +1,4 @@
-/* .allProductsWrapper{
-    display:grid;
-} */
+.allProductsWrapper{
+    display:flex;
+    flex-direction: column;
+}

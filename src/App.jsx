@@ -1,12 +1,14 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 // import AllProductsPage from "./components/AllProductsPage";
-import FilterBar from "./components/nav/FilterBar";
+
 import NavBar from "./components/nav/NavBar";
 import Cart from "./components/cart/Cart";
 import Favourite from "./components/favourite/Favourite";
 import Products from "./components/products/Products";
 import Bar from "./components/nav/Bar";
+import FilterBar from "./components/nav/FilterBar";
+import AllProductsPage from "./components/AllProductsPage";
 
 export const DUMMY_PRODUCTS = [
   {
@@ -89,11 +91,12 @@ function App() {
       <BrowserRouter>
         <NavBar />
         {/* <Bar/> */}
-        <FilterBar />
+        {/* <FilterBar/> */}
+       
         <Routes>
           <Route
             path="/"
-            element={<Products/>}
+            element={<AllProductsPage/>}
           />
           <Route path="/cart" element={<Cart />} />
           <Route path="/favourite" element={<Favourite />} />

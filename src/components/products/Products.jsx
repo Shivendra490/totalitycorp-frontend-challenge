@@ -7,6 +7,8 @@ import Container from "../UI/Container";
 import CartContext from "../../store/CartContext";
 import ProductCard from "../UI/ProductCard";
 import MuiCard from "../UI/MuiCard";
+import FilterBar from "../nav/FilterBar";
+
 
 export const DUMMY_PRODUCTS = [
   {
@@ -86,15 +88,16 @@ export const DUMMY_PRODUCTS = [
 
 
 const Products = (props) => {
+  const productsList=props.productsList
 
 
-  const [allProducts,setAllProducts]=useState([])
+  // const [allProducts,setAllProducts]=useState([])
   const ctx=useContext(CartContext)
 
-  useEffect(()=>{
-    setAllProducts(DUMMY_PRODUCTS)
+  // useEffect(()=>{
+  //   setAllProducts(DUMMY_PRODUCTS)
 
-  },[])
+  // },[])
 
   const addToCart=(item)=>{
       ctx.addToCart(item)
@@ -106,8 +109,9 @@ const Products = (props) => {
 
   return (
     <Container from='product'>
-      {allProducts &&
-        allProducts.map((product) => {
+      
+      {productsList &&
+        productsList?.map((product) => {
           return (
             <ProductCard onAddToCart={addToCart} product={product} key={product.id} from="product" onRemoveFromCart={remove1Cart} />
             // <MuiCard onAddToCart={addToCart} product={product} key={product.id} from="product"  />

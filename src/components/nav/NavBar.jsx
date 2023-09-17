@@ -6,9 +6,9 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 import Badge from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
-import IconButton from "@mui/material/IconButton";
+
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import CartContext from "../../store/CartContext";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -22,7 +22,24 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 const NavBar = () => {
   const ctx=useContext(CartContext)
+  const [btnIsHighlighted, setBtnIsHighlighted] = useState(false);
   const numberOfCartItems=ctx.cartItems?.reduce((acc,cur)=>{return acc+cur.quantity},0)
+
+  useEffect(() => {
+    
+    if (ctx.cartItems.length === 0) {
+      return;
+    }
+    setBtnIsHighlighted(true);
+
+    const timer = setTimeout(() => {
+      setBtnIsHighlighted(false);
+    }, 300);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [ctx.cartItems]);
   return (
     <div className={styles.navbar}>
       <div className={styles.logo}>
@@ -37,8 +54,8 @@ const NavBar = () => {
           <FavoriteBorderIcon sx={{ fontSize: 28 }} color="main" />
         </NavLink>
 
-        <NavLink to="/cart">
-          <StyledBadge badgeContent={numberOfCartItems || 0} sx={{ fontSize: 28 }} color="primary">
+        <NavLink to="/cart" className={styles.bump}>
+          <StyledBadge badgeContent={numberOfCartItems || 0} className={styles.bump} sx={{ fontSize: 28 }} color="primary">
             <ShoppingCartIcon sx={{ fontSize: 32 }} />
           </StyledBadge>
         </NavLink>

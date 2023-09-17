@@ -1,100 +1,84 @@
-// import { useEffect, useState } from 'react';
-// import styles from './AllProductsPage.module.css'
-// import Product from './products/Products'
+import { useEffect, useState } from 'react';
+import styles from './AllProductsPage.module.css'
 
-// export const DUMMY_PRODUCTS = [
-//   {
-//     id: 1,
-//     image:
-//       "https://images.unsplash.com/photo-1527719327859-c6ce80353573?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8dHNoaXJ0fGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
-//     name: "T-Shirt",
-//     price: 500,
-//     rating: 3,
-//     category: "mensWear",
-//   },
-//   {
-//     id: 2,
-//     image:
-//       "https://plus.unsplash.com/premium_photo-1682342786341-239a41287013?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHRzaGlydHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
-//     name: "T-Shirt",
-//     price: 500,
-//     rating: 3,
-//     category: "mensWear",
-//   },
-//   {
-//     id: 3,
-//     image:
-//       "https://images.unsplash.com/photo-1622445275649-b1922cc3e837?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHRzaGlydHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
-//     name: "T-Shirt",
-//     price: 500,
-//     rating: 3,
-//     category: "mensWear",
-//   },
-//   {
-//     id: 4,
-//     image:
-//       "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dHJvdXNlcnN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
-//     name: "T-Shirt",
-//     price: 500,
-//     rating: 3,
-//     category: "mensWear",
-//   },
-//   {
-//     id: 5,
-//     image:
-//       "https://plus.unsplash.com/premium_photo-1673758901405-32f0a6f625d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHRyb3VzZXJzfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
-//     name: "T-Shirt",
-//     price: 500,
-//     rating: 3,
-//     category: "mensWear",
-//   },
-//   {
-//     id: 6,
-//     image:
-//       "https://images.unsplash.com/photo-1584370848010-d7fe6bc767ec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHRyb3VzZXJzfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
-//     name: "T-Shirt",
-//     price: 500,
-//     rating: 3,
-//     category: "mensWear",
-//   },
-//   {
-//     id: 7,
-//     image:
-//       "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8c2hpcnRzfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
-//     name: "T-Shirt",
-//     price: 500,
-//     rating: 3,
-//     category: "mensWear",
-//   },
-//   {
-//     id: 8,
-//     image:
-//       "https://images.unsplash.com/photo-1594938291221-94f18cbb5660?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHNoaXJ0c3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
-//     name: "T-Shirt",
-//     price: 500,
-//     rating: 3,
-//     category: "mensWear",
-//   },
-// ];
-
-
-// const AllProductsPage = (props) => {
-
-//   const [allProducts,setAllProducts]=useState([])
-
-//   useEffect(()=>{
-//     setAllProducts(DUMMY_PRODUCTS)
-
-//   },[])
-
-
-//   return (
-//     <div className={styles.allproductswrapper}>
-//       <Product productsList={allProducts}/>
-//     </div>
-//   )
-// }
+// import Container from './UI/Container';
+import Products from './products/Products';
+import FilterBar from './nav/FilterBar';
+import productItems from './../api/api'
 
 
 
-// export default AllProductsPage
+
+const AllProductsPage = (props) => {
+
+  const [productsList,setProductsList]=useState([])
+
+  useEffect(()=>{
+    setProductsList(productItems)
+
+  },[])
+
+//   const filterCategory=(category)=>{
+//     console.log('cate',category)
+//     if(category==='All'){
+//         setProductsList(productItems)
+//         return
+
+//     }
+//     const categoryFilteredItems=productItems?.filter((product)=>{
+//         return product.category===category
+//     })
+//     setProductsList(categoryFilteredItems)
+//   }
+
+//   const searchFilter=(key)=>{
+//     const searchFilteredItems=productItems?.filter((product)=>{
+//         return product.name.toLowerCase().includes(key.toLowerCase())
+//     })
+
+//     setProductsList(searchFilteredItems)
+
+//   }
+
+const filterItems=(filterObj)=>{
+    const {category,searchKey,min,max,rating} =filterObj
+
+    const filteredProducts=productItems?.filter((item)=>{
+        if(category==='All'){
+            return item
+        }else{
+            return item.category===category
+        }
+    })
+    .filter((item)=>{
+        if(!searchKey){
+            return item
+        }else{
+            return item.name.trim().toLowerCase().includes(searchKey.trim().toLowerCase())
+        }
+    })
+    .filter((item)=>{
+        if(rating==='All'){
+            return item
+        }else{
+            return item.rating>=rating
+        }
+    })
+    .filter((item)=>{
+        return min<=item.price && max>=item.price
+    })
+    setProductsList(filteredProducts)
+}
+
+
+  return (
+    <main className={styles.allProductsWrapper}>
+      <FilterBar onFilter={filterItems}/>
+      <Products productsList={productsList}/>
+    </main>
+  )
+}
+
+
+
+export default AllProductsPage

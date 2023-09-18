@@ -5,15 +5,14 @@ const defaultCartState = { cartItems: [], totalPrice: 0 };
 
 const cartReducer = (state, action) => {
   if (action.type === "ADD_TO_CART") {
-    console.log("ACTION", action);
     const updatedTotalPrice =
       state.totalPrice + action.item.price * action.item.quantity;
     const existingCartItemIndex = state.cartItems.findIndex(
       (item) => item?.id === action.item.id
     );
-    console.log('existingindex',existingCartItemIndex)
+
     const existingCartItem = state.cartItems[existingCartItemIndex];
-    console.log('existing',existingCartItem)
+
     let updatedItems;
 
     if (existingCartItem) {
@@ -23,40 +22,37 @@ const cartReducer = (state, action) => {
       };
       updatedItems = [...state.cartItems];
       updatedItems[existingCartItemIndex] = updatedItem;
-
-      
     } else {
       updatedItems = state.cartItems.concat(action.item);
     }
-    return {cartItems:updatedItems,totalPrice:updatedTotalPrice}
+    return { cartItems: updatedItems, totalPrice: updatedTotalPrice };
   }
 
-  if(action.type==="REMOVE_FROM_CART"){
+  if (action.type === "REMOVE_FROM_CART") {
     const existingCartItemIndex = state.cartItems.findIndex(
       (item) => item.id === action.id
     );
 
-    const existingItem=state.cartItems[existingCartItemIndex]
-    const updatedTotalPrice=state.totalPrice-existingItem.price
+    const existingItem = state.cartItems[existingCartItemIndex];
+    const updatedTotalPrice = state.totalPrice - existingItem.price;
 
-    let updatedItems
-    if(existingItem.quantity===1){
-      updatedItems=state.cartItems.filter(item=>item.id!==action.id)
-    }else{
-      const updatedItem={...existingItem,quantity:existingItem.quantity-1}
-      updatedItems=[...state.cartItems]
-      updatedItems[existingCartItemIndex]=updatedItem
+    let updatedItems;
+    if (existingItem.quantity === 1) {
+      updatedItems = state.cartItems.filter((item) => item.id !== action.id);
+    } else {
+      const updatedItem = {
+        ...existingItem,
+        quantity: existingItem.quantity - 1,
+      };
+      updatedItems = [...state.cartItems];
+      updatedItems[existingCartItemIndex] = updatedItem;
     }
 
     return {
-      cartItems:updatedItems,
-      totalPrice:updatedTotalPrice
-    }
-
-
+      cartItems: updatedItems,
+      totalPrice: updatedTotalPrice,
+    };
   }
-
-
 };
 
 const CartProvider = ({ children }) => {

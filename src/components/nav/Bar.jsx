@@ -14,18 +14,34 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { useNavigate } from "react-router-dom";
 import { Badge } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import CartContext from "../../store/CartContext";
 
-const pages = ["products", "cart", "username"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const pages = ["products", "cart", "Ram"];
+const settings = ["Ram", "Logout"];
+
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  "& .MuiBadge-badge": {
+    right: -3,
+    top: 13,
+    border: `2px solid ${theme.palette.background.paper}`,
+    padding: "0 4px",
+    fontSize: "20px",
+    backgroundColor: "red",
+  },
+}));
 
 function Bar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const navigate = useNavigate();
+  const ctx = React.useContext(CartContext);
+  const numberOfCartItems = ctx.cartItems?.reduce((acc, cur) => {
+    return acc + cur.quantity;
+  }, 0);
 
   const handleNavClick = (key, e) => {
-    console.log("kdy", e);
     setAnchorElNav(null);
     if (key === "products") {
       navigate("/");
@@ -35,17 +51,17 @@ function Bar() {
     }
   };
 
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
   };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElUser(null);
-  };
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
@@ -75,7 +91,7 @@ function Bar() {
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
-              size="large"
+              size="40px"
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
@@ -103,22 +119,19 @@ function Bar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem
-                  key={page}
-                  onClick={(e) => handleNavClick(page, e)}
-                  selected={true}
-                >
+                <MenuItem key={page} onClick={() => handleNavClick(page)}>
                   {page === "cart" ? (
                     <Badge
-                      badgeContent={1 || 0}
-                      // className={styles.bump}
+                      badgeContent={numberOfCartItems || 0}
                       sx={{ fontSize: 28 }}
                       color="primary"
                     >
                       <ShoppingCartIcon sx={{ fontSize: 32 }} />
                     </Badge>
                   ) : (
-                    <Typography textAlign="center">{page}</Typography>
+                    <Typography textAlign="center" variant="h5">
+                      {page}
+                    </Typography>
                   )}
                 </MenuItem>
               ))}
@@ -151,17 +164,18 @@ function Bar() {
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 {page === "cart" ? (
-                    <Badge
-                      badgeContent={1 || 0}
-                      // className={styles.bump}
-                      sx={{ fontSize: 28 }}
-                      color="primary"
-                    >
-                      <ShoppingCartIcon sx={{ fontSize: 32 }} />
-                    </Badge>
-                  ) : (
-                    <Typography textAlign="center">{page}</Typography>
-                  )}
+                  <StyledBadge
+                    badgeContent={numberOfCartItems || 0}
+                    sx={{ fontSize: 28 }}
+                    color="primary"
+                  >
+                    <ShoppingCartIcon sx={{ fontSize: 32 }} />
+                  </StyledBadge>
+                ) : (
+                  <Typography variant="h5" textAlign="center">
+                    {page}
+                  </Typography>
+                )}
               </Button>
             ))}
           </Box>
@@ -190,7 +204,9 @@ function Bar() {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                  <Typography textAlign="center" variant="h4">
+                    {setting}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>

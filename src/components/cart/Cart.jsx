@@ -1,6 +1,4 @@
 import React, { useContext } from 'react'
-import { DUMMY_PRODUCTS } from '../../App'
-import ProductCard from '../UI/ProductCard'
 import Container from '../UI/Container'
 import CartContext from '../../store/CartContext'
 import MuiCard from '../UI/MuiCard'
@@ -12,7 +10,7 @@ const cart = (props) => {
   const addToCart=(item)=>{
     ctx.addToCart(item)
 }
-  console.log('CTX',ctx)
+  
 
   const remove1Cart=(id)=>{
     ctx.removeFromCart(id)
@@ -28,6 +26,3 @@ const cart = (props) => {
 
 export default cart
 
-
-
-{/* <ProductCard product={product} key={product.id} onAddToCart={addToCart} from='cart' onRemoveFromCart={remove1Cart}/> */}

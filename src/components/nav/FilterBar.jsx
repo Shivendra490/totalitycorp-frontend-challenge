@@ -1,60 +1,80 @@
 import { useState } from "react";
 import styles from "./FilterBar.module.css";
+import Box from "@mui/material/Box";
+import Slider from "@mui/material/Slider";
 
-
-let obj={category:'All',searchKey:'',min:100,max:900,rating:'All'}
+let obj = {
+  category: "All",
+  searchKey: "",
+  min: 1000,
+  max: 100000,
+  rating: "All",
+};
 const FilterBar = (props) => {
+  const [value, setValue] = useState([1000, 100000]);
 
-  const [filter,setFilter]=useState({category:'All',searchKey:'',min:100,max:900,rating:'All'})
-  
+  const [filter, setFilter] = useState(obj);
 
-  const filterOnChangeHandler=(e)=>{
-    const {name,value}=e.target
-    setFilter({...filter,[name]:value})
-    
-     obj={...obj,[name]:value}
-    
+  const handleChange = (event, newValue) => {
+    const min = newValue[0];
+    const max = newValue[1];
+    setValue([min, max]);
+    const modifiedFilter = { ...filter, min: min, max: max };
+    props.onFilter(modifiedFilter);
+  };
 
-    props.onFilter(obj)
-  }
+  const filterOnChangeHandler = (e) => {
+    const { name, value } = e.target;
 
+    const modifiedFilter = { ...filter, [name]: value };
+    setFilter(modifiedFilter);
 
-const resetFilter=(e)=>{
- 
-  setFilter({category:'All',searchKey:'',min:100,max:1000,rating:'All'})
-  obj={category:'All',searchKey:'',min:100,max:1000,rating:'All'}
-  props.onFilter(obj)
-}
+    props.onFilter(modifiedFilter);
+  };
 
-  // const searchHandler=(e)=>{
-  //   const {value}=e.target
-  //   setSearchKey(value)
-  //   props.onSearchFilter(value)
-  // }
+  const resetFilter = (e) => {
+    setFilter(obj);
+    setValue([1000, 100000]);
 
-  
-  
+    props.onFilter(obj);
+  };
+
   return (
     <div className={styles.filterbar}>
       <div>
         Category&nbsp;
         <span>
-          <select name="category" value={filter.category} onChange={filterOnChangeHandler}>
-            <option value="All">all</option>
-            <option value="MensWear">Mens Wear</option>
-            <option value="WomensWear">Womens Wear</option>
+          <select
+            name="category"
+            value={filter.category}
+            onChange={filterOnChangeHandler}
+          >
+            <option value="All">All</option>
+           {props.categories?.map((category,index)=>{
+            return  <option value={category} key={index}>{category}</option>
+           })}
           </select>
         </span>
       </div>
 
       <div className={styles.search}>
-        <input type='text' name='searchKey' placeholder="Search item" value={filter.searchKey} onChange={filterOnChangeHandler}/>
+        <input
+          type="text"
+          name="searchKey"
+          placeholder="Search item"
+          value={filter.searchKey}
+          onChange={filterOnChangeHandler}
+        />
       </div>
 
       <div>
         Rating&nbsp;
         <span>
-          <select name="rating" value={filter.rating} onChange={filterOnChangeHandler}>
+          <select
+            name="rating"
+            value={filter.rating}
+            onChange={filterOnChangeHandler}
+          >
             <option value="All">All</option>
             <option value={2}>2 * & above</option>
             <option value={3}>3 * & above</option>
@@ -63,46 +83,33 @@ const resetFilter=(e)=>{
         </span>
       </div>
 
-      <div>
-        Min&nbsp;
-        <span>
-          <select name="min" value={filter.min}onChange={filterOnChangeHandler}>
-          <option value={100}>100</option>
-            <option value={200}>200</option>
-            <option value={300}>300</option>
-            <option value={400}>400</option>
-            <option value={500}>500</option>
-            <option value={600}>600</option>
-            <option value={700}>700</option>
-            <option value={800}>800</option>
-            <option value={900}>900</option>
-          </select>
-        </span>
-      </div>
-
-      <div>
-        Max&nbsp;
-        <span>
-          <select name="max" value={filter.max} onChange={filterOnChangeHandler}>
-          <option value={900}>1000</option>
-            <option value={900}>900</option>
-            <option value={800}>800</option>
-            <option value={700}>700</option>
-            <option value={600}>600</option>
-            <option value={500}>500</option>
-            <option value={400}>400</option>
-            <option value={300}>300</option>
-            <option value={200}>200</option>
-            <option value={100}>100</option>
-          </select>
-        </span>
-      </div>
+      <Box sx={{ width: 300 }}>
+        <Slider
+          getAriaLabel={() => "Temperature range"}
+          value={value}
+          onChange={handleChange}
+          valueLabelDisplay="auto"
+          size="small"
+          min={1000}
+          max={100000}
+          step={1000}
+        />
+      </Box>
 
       <div className={styles.reset}>
-        <button onClick={resetFilter} style={{width:'100%',height:'100%',padding:'1rem' , backgroundColor:'lightblue',borderRadius:'1rem'}}>Reset filter</button>
+        <button
+          onClick={resetFilter}
+          style={{
+            width: "100%",
+            height: "100%",
+            padding: "1rem",
+            backgroundColor: "lightblue",
+            borderRadius: "1rem",
+          }}
+        >
+          Reset filter
+        </button>
       </div>
-
-
     </div>
   );
 };

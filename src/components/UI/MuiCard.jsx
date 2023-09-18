@@ -1,19 +1,13 @@
 import * as React from "react";
-import { styled } from "@mui/material/styles";
+
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
-import Collapse from "@mui/material/Collapse";
-import Avatar from "@mui/material/Avatar";
-import IconButton from "@mui/material/IconButton";
+
 import Typography from "@mui/material/Typography";
-import { red } from "@mui/material/colors";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
+
 import Rating from "@mui/material/Rating";
 import Button from "@mui/material/Button";
 import RemoveIcon from "@mui/icons-material/Remove";
@@ -21,21 +15,8 @@ import AddIcon from "@mui/icons-material/Add";
 
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { Box, Paper } from "@mui/material";
-import QuantityInput from "./d";
-
-// const ExpandMore = styled((props) => {
-//   const { expand, ...other } = props;
-//   return <IconButton {...other} />;
-// })(({ theme, expand }) => ({
-//   transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-//   marginLeft: "auto",
-//   transition: theme.transitions.create("transform", {
-//     duration: theme.transitions.duration.shortest,
-//   }),
-// }));
 
 export default function MuiCard(props) {
-  // const [expanded, setExpanded] = React.useState(false);
   const [qty, setQty] = React.useState(1);
   const { product, from } = props;
 
@@ -65,20 +46,9 @@ export default function MuiCard(props) {
     props.onRemoveFromCart(props.product.id);
   };
 
-  // const handleExpandClick = () => {
-  //   setExpanded(!expanded);
-  // };
-
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardHeader
-        action={
-          <IconButton aria-label="settings">
-            <FavoriteBorderIcon sx={{ fontSize: 28 }} color="main" />
-          </IconButton>
-        }
-        title={product.name}
-      />
+    <Card sx={{ maxWidth: 345 }} key={product.id}>
+      <CardHeader title={product.name} />
       <CardMedia
         component="img"
         height="300"
@@ -95,7 +65,7 @@ export default function MuiCard(props) {
             justifyContent: "space-between",
           }}
         >
-          <Paper elevation="1" sx={{ padding: ".2rem .5rem" }}>
+          <Paper elevation={1} sx={{ padding: ".2rem .5rem" }}>
             <Typography variant="h6">INR {product.price}</Typography>
           </Paper>
           <Box>
@@ -143,7 +113,7 @@ export default function MuiCard(props) {
       </CardContent>
       {from === "product" && (
         <CardActions>
-          <Button variant="contained" onClick={submitHandler}>
+          <Button variant="contained" onClick={submitHandler} fullWidth>
             ADD TO CART
           </Button>
         </CardActions>

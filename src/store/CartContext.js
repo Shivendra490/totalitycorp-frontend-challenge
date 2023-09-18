@@ -10,7 +10,3 @@ const CartContext=createContext({
 })
 
 export default CartContext;
-
-// wishListItems:[],
-//     addToWishList:()=>{},
-//     removeFromWishList:()=>{}

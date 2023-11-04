@@ -42,14 +42,14 @@ const FilterBar = (props) => {
   return (
     <div className={styles.filterbar}>
       <div>
-        Category&nbsp;
+        {/* Category&nbsp; */}
         <span>
           <select
             name="category"
             value={filter.category}
             onChange={filterOnChangeHandler}
           >
-            <option value="All">All</option>
+            <option value="All">All Categories</option>
            {props.categories?.map((category,index)=>{
             return  <option value={category} key={index}>{category}</option>
            })}
@@ -68,14 +68,14 @@ const FilterBar = (props) => {
       </div>
 
       <div>
-        Rating&nbsp;
+        {/* Rating&nbsp; */}
         <span>
           <select
             name="rating"
             value={filter.rating}
             onChange={filterOnChangeHandler}
           >
-            <option value="All">All</option>
+            <option value="All">All Ratings</option>
             <option value={2}>2 * & above</option>
             <option value={3}>3 * & above</option>
             <option value={4}>4 * & above</option>

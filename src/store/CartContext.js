@@ -5,6 +5,7 @@ const CartContext=createContext({
     totalCartPrice:0,
     addToCart:(item)=>{},
     removeFromCart:(id)=>{},
+    clearCart:()=>{}
     
 
 })

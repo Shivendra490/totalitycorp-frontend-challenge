@@ -4,6 +4,7 @@ import Cart from "./components/cart/Cart";
 import Bar from "./components/nav/Bar";
 import AllProductsPage from "./components/AllProductsPage";
 
+
 function App() {
   return (
     <>
